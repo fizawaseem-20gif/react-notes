@@ -64,5 +64,4 @@ Updates state
 )
 Rendering list with the help of props:
 
-✔ conditional rendering
-✔ list rendering
+
