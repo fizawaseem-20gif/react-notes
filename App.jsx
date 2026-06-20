@@ -1,56 +1,35 @@
-import { useState, useEffect } from "react";
-import TodoItem from "./TodoItem";
-import "./App.css";
+import { useEffect, useState } from 'react'
+import reactLogo from './assets/react.svg'
+
+import './App.css'
 
 function App() {
-  const [task, setTask] = useState("");
-  const [todos, setTodos] = useState([]);
-
-  useEffect(() => {
-    console.log("Todos Updated:", todos);
-  }, [todos]);
-
-  const addTodo = () => {
-    if (!task.trim()) return;
-
-    setTodos([...todos, task]);
-    setTask("");
-  };
-
-  const deleteTodo = (index) => {
-    setTodos(todos.filter((_, i) => i !== index));
-  };
+  const [count, setCount] = useState(0);
+  useEffect(()=>{
+    console.log(`Count is`,count);
+  },[count])
 
   return (
-    <div className="container">
-      <h1>Simple Todo App</h1>
+    <>
+      <center><h1>Counter app</h1>
+      <h1>{count}</h1>
 
-      <div className="input-section">
-        <input
-          type="text"
-          placeholder="Enter a task"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-        />
+      <button onClick={() => {
+        setCount(count + 1);
+        console.log(count);
+      }}>Add Value</button>
 
-        <button onClick={addTodo}>Add</button>
-      </div>
+     
+      <button onClick={() => {
+        setCount(count - 1)
+      }}>Remove value</button>
 
-      {todos.length === 0 ? (
-        <p className="empty">No tasks available.</p>
-      ) : (
-        <ul>
-          {todos.map((todo, index) => (
-            <TodoItem
-              key={index}
-              todo={todo}
-              onDelete={() => deleteTodo(index)}
-            />
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+  
+      <button onClick={()=>{
+        setCount(0)
+      }}>Reset</button></center>
+    </>
+  )
 }
 
-export default App;
+export default App
